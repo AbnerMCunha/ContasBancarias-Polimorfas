@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContasBancariasPolimorfas.Entities
+namespace sealed ContasBancariasPolimorfas.Entities
 {
     internal class SavingsAccount : Account
     {
