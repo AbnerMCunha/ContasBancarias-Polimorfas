@@ -20,5 +20,5 @@ Virtual : Aplicavel a SuperClasse e define que as SubClasses Poderam ter comport
 Override : Aplicavel as SubClasses e Definem que aquele metodo já existente na SuperClasse, terá um formato Diferente naquela SubClasse
 Base.Metodo() : Aplicavel as SubClasses e Retorna o comportamento Padrão da Superclasse na SubClasse
 
-A Palavra Sealed utilizadas na declaração de Classes em geral e Metodos para que definir que não haverá sobrepoisção daquela classe ou metodo 
+A Palavra Sealed utilizadas na declaração de Classes e Metodos para que definir que não haverá Herança ou sobrepoisção daquela classe ou metodo, respectivamente.
 Neste projeto é utilizada na SubClasse SavingsAccount.
