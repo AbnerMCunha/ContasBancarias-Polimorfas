@@ -1,0 +1,84 @@
+using System;
+using System.Globalization;
+using ContasBancariasPolimorfas.Entities;
+
+namespace ContasBancariasPolimorfas
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /* Conceito de Upcasting e Downcasting */
+
+            Account account = new Account();
+
+            BusinessAccount businessAccount = new BusinessAccount();
+            SavingsAccount savingsAccount = new SavingsAccount();
+
+            //Upcasting - Convertendo a Instanciação de SubClasses em Instancia da SuperClasse
+                  account = businessAccount;
+
+                  Account accountUpcasting1 = new Account(1000, "Normal", 500);
+                  Account accountUpcasting2 = new BusinessAccount(1001, "Empresarial", 500, 500);
+                  Account accountUpcasting3 = new SavingsAccount(1002, "Poupança", 500, 0.01);
+
+                  Console.WriteLine("Conta Nº" + accountUpcasting1.Number.ToString() + ",  Criada como Conta Normal \nStatus " + accountUpcasting1);
+                  Console.WriteLine("\n\nConta Nº" + accountUpcasting2.Number.ToString() + ",  Instanciada como Conta Empresarial mas atribuida como Tipo de Conta Normal \nStatus " + accountUpcasting2);
+                  Console.WriteLine("\n\nConta Nº" + accountUpcasting3.Number.ToString() + ", Instanciada como Conta Poupança mas atribuida como Tipo de Conta Normal \nStatus " + accountUpcasting3);
+
+            //Dowcasting - Convertendo a Instanciação de SuperClasse em Instancia da SubClasses
+
+                  //Possiveis Erros ao executar DownCasting - Erro identificavél somente em tempo de execução 
+                  //BusinessAccount DowncastingQueDaErro = (BusinessAccount)accountUpcasting3;    
+                  //businessAccount = account;                                                    
+
+                  //1º Forma correta de executar Downcasting
+
+                  if (accountUpcasting3 is BusinessAccount) //Não entrará no If pois accountUpcasting3 é instancia de Savings Account não de BusinessAccount
+                  {
+                      //1º Forma de fazer Dowcasting (BusinessAccount)accountUpcasting3;
+                      BusinessAccount DowcastingCorreto = (BusinessAccount)accountUpcasting3;
+                      DowcastingCorreto.Loan(300);
+                      Console.WriteLine("\nEmprestimo feito! \nBalanço : " + DowcastingCorreto.Balance.ToString());
+
+                  }
+
+                  if (accountUpcasting3 is SavingsAccount)
+                  {
+                      //2º Forma de fazer Dowcasting accountUpcasting3 as SavingsAccount;
+                      SavingsAccount DowcastingSavingsAccount = accountUpcasting3 as SavingsAccount;
+
+                      Console.WriteLine("\nConta Nº" + DowcastingSavingsAccount.Number.ToString() + ", foi transformada em Conta Poupança com Sucesso! " );
+
+                      //accountUpcasting3.UpdateBalance(); // Daria errado pois está instanciado como Account que não tem este metodo. Por isso a conversao se fez necessária.
+                      DowcastingSavingsAccount.UpdateBalance();
+
+                      Console.WriteLine("\nSaldo de Conta Nº" + DowcastingSavingsAccount.Number.ToString() + ", atualizado a uma taxa de " +
+                          (DowcastingSavingsAccount.InterestRate * 100) +
+                          "% ! \nStatus " + DowcastingSavingsAccount);
+                  }
+                
+                  /* RESULTADO EM TELA
+                 
+
+                      Conta Nº1000,  Criada como Conta Normal
+                      Status [CC]: 1000, Titular: Normal, Saldo $500.00
+
+
+                      Conta Nº1001,  Instanciada como Conta Empresarial mas atribuida como Tipo de Conta Normal
+                      Status [CC]: 1001, Titular: Empresarial, Saldo $500.00, Limite de Empréstimo : $500.00
+
+
+                      Conta Nº1002, Instanciada como Conta Poupança mas atribuida como Tipo de Conta Normal
+                      Status [CC]: 1002, Titular: Poupança, Saldo $500.00, Taxa: 1.00 %
+
+                      Conta Nº1002, foi transformada em Conta Poupança com Sucesso!
+
+                      Saldo de Conta Nº1002, atualizado a uma taxa de 1% !
+                      Status [CC]: 1002, Titular: Poupança, Saldo $505.00, Taxa: 1.00 %
+
+                */
+
+        }
+    }
+}
