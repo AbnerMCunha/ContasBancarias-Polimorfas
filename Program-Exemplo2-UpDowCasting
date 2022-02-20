@@ -42,6 +42,10 @@ namespace ContasBancariasPolimorfas
                       Console.WriteLine("\nEmprestimo feito! \nBalanço : " + DowcastingCorreto.Balance.ToString());
 
                   }
+                  else
+                  {
+                      Console.WriteLine("Operação de Converter Conta Empresarial em Conta Poupança é Inválida" );
+                  }
 
                   if (accountUpcasting3 is SavingsAccount)
                   {
@@ -72,6 +76,7 @@ namespace ContasBancariasPolimorfas
                       Conta Nº1002, Instanciada como Conta Poupança mas atribuida como Tipo de Conta Normal
                       Status [CC]: 1002, Titular: Poupança, Saldo $500.00, Taxa: 1.00 %
 
+                      Operação de Converter Conta Empresarial em Conta Poupança é Inválida
                       Conta Nº1002, foi transformada em Conta Poupança com Sucesso!
 
                       Saldo de Conta Nº1002, atualizado a uma taxa de 1% !
