@@ -21,4 +21,5 @@ Override : Aplicavel as SubClasses e Definem que aquele metodo já existente na 
 Base.Metodo() : Aplicavel as SubClasses e Retorna o comportamento Padrão da Superclasse na SubClasse
 
 A Palavra Sealed utilizadas na declaração de Classes e Metodos para que definir que não haverá Herança ou sobrepoisção daquela classe ou metodo, respectivamente.
+Outro adendo é que esta palavra garante uma melhora de performance na execução dos objetos relacionados a esta Classe/Metodo.
 Neste projeto é utilizada na SubClasse SavingsAccount.
